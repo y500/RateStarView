@@ -31,6 +31,7 @@
 }
 
 - (void)setScore:(float)score {
+    _score = score;
     int sc = (int)score;
     
     for (int i = 0; i < 5; i++) {
@@ -57,6 +58,20 @@
     }
     
     [self setNeedsDisplay];
+}
+
+- (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    UITouch *touch = [touches anyObject];
+    CGPoint point = [touch locationInView:touch.view];
+    
+    for (int i = 0; i < 5; i++) {
+        UIImageView *starView = (UIImageView*)[self viewWithTag:100+i];
+        
+        if (CGRectContainsPoint(starView.frame, point)) {
+            [self setScore:i+1];
+            break;
+        }
+    }
 }
 
 @end

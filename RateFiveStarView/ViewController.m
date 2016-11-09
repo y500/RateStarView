@@ -27,6 +27,13 @@
     starView.center = CGPointMake(self.view.frame.size.width/2, 100);
     [self.view addSubview:starView];
     
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    button.frame = CGRectMake(0, 0, 100, 30);
+    [button setTitle:@"获取star" forState:UIControlStateNormal];
+    [button addTarget:self action:@selector(getStarValue) forControlEvents:UIControlEventTouchUpInside];
+    button.center = CGPointMake(starView.center.x, starView.center.y + 50);
+    [self.view addSubview:button];
+    
     textField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, 120, 30)];
     textField.borderStyle = UITextBorderStyleRoundedRect;
     textField.center = CGPointMake(starView.center.x, starView.center.y + 100);
@@ -37,6 +44,10 @@
 
 - (void)textFieldDidChange:(id)sender {
     [starView setScore:textField.text.floatValue];
+}
+
+- (void)getStarValue {
+    textField.text = [NSString stringWithFormat:@"%0.1f", starView.score];
 }
 
 @end

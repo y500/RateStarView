@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface RateStarView : UIView
+@property(nonatomic, assign)float score;
 
 - (instancetype)initWithNormalImage:(UIImage*)starImage selectedImage:(UIImage*)selectedImage padding:(CGFloat)padding;
 
